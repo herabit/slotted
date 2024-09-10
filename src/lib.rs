@@ -1,10 +1,14 @@
 #![no_std]
 
+use alloc::vec::Vec;
+use slot::Slot;
+
 extern crate alloc;
 
-pub mod content;
-pub mod occupied;
-pub mod poisoned;
 pub mod slot;
-pub mod vacant;
-// pub mod util;
+
+pub struct Slotted<T> {
+    slots: Vec<Slot<T>>,
+    next_vacant: Option<u32>,
+    next_poison: Option<u32>,
+}
